@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import * as React from "react";
 
 export function AnimatedCountdown({ target }: { target: Date }) {
     const [time, setTime] = useState(getTimeLeft(target));
@@ -90,7 +91,7 @@ const styles: Record<string, React.CSSProperties> = {
         height: "100%",
         fontSize: "52px",
         fontWeight: 700,
-        color: "#222",
+        color: "#213547",
         background: "#fff",
         display: "flex",
         justifyContent: "center",
@@ -100,7 +101,7 @@ const styles: Record<string, React.CSSProperties> = {
     },
     label: {
         marginTop: "10px",
-        fontSize: "15px",
+        fontSize: "16px",
         color: "#666",
     },
 };
