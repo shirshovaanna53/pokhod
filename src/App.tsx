@@ -1,10 +1,11 @@
 import './App.css'
+import {AnimatedCountdown} from "./components/Countdown.tsx";
 
 function App() {
 
   return (
     <>
-      <h1>Тут будет обратный отсчет2</h1>
+        <AnimatedCountdown target={new Date("2026-07-13T09:00:00Z")} />
     </>
   )
 }
