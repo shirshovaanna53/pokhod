@@ -2,13 +2,35 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as React from "react";
 
+let timeOffset = 0;
+
+async function getServerTime() {
+    const res = await fetch("https://worldtimeapi.org/api/timezone/Etc/UTC");
+    const data = await res.json();
+    return new Date(data.utc_datetime).getTime();
+}
+
+async function syncTime() {
+    const server = await getServerTime();
+    const client = Date.now();
+    timeOffset = server - client;
+}
+
+function now() {
+    return Date.now() + timeOffset;
+}
+
+
 export function AnimatedCountdown({ target }: { target: Date }) {
     const [time, setTime] = useState(getTimeLeft(target));
 
     useEffect(() => {
+        syncTime(); // синхронизируемся один раз при загрузке
+
         const id = setInterval(() => {
             setTime(getTimeLeft(target));
         }, 1000);
+
         return () => clearInterval(id);
     }, [target]);
 
@@ -20,6 +42,7 @@ export function AnimatedCountdown({ target }: { target: Date }) {
             <TimeUnit label="Секунд" value={time.seconds} />
         </div>
     );
+
 }
 
 function TimeUnit({ label, value }: { label: string; value: number }) {
@@ -51,7 +74,7 @@ function TimeUnit({ label, value }: { label: string; value: number }) {
 }
 
 function getTimeLeft(target: Date) {
-    const diff = target.getTime() - Date.now();
+    const diff = target.getTime() - now();
     const total = Math.max(diff, 0);
 
     return {
