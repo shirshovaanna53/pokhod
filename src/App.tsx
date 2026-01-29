@@ -5,7 +5,8 @@ function App() {
 
   return (
     <>
-        <AnimatedCountdown target={new Date("2026-07-13T09:00:00Z")} />
+        <h1>До 20-летия похода осталось</h1>
+        <AnimatedCountdown target={new Date("2026-07-13T06:00:00Z")} />
     </>
   )
 }

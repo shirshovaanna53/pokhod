@@ -24,20 +24,26 @@ export function AnimatedCountdown({ target }: { target: Date }) {
 function TimeUnit({ label, value }: { label: string; value: number }) {
     return (
         <div style={styles.unit}>
-            <div style={styles.numberWrapper}>
+            <div style={styles.pageWrapper}>
                 <AnimatePresence mode="popLayout">
                     <motion.div
                         key={value}
-                        initial={{ rotateX: 90, opacity: 0 }}
-                        animate={{ rotateX: 0, opacity: 1 }}
-                        exit={{ rotateX: -90, opacity: 0 }}
-                        transition={{ duration: 0.35 }}
-                        style={styles.number}
+                        style={styles.page}
+                        initial={{ rotateX: 75, y: -140, opacity: 0 }}
+                        animate={{ rotateX: 0, y: 0, opacity: 1 }}
+                        exit={{
+                            rotateX: -75,
+                            y: 160,
+                            opacity: 0,
+                            transition: { duration: 0.55, ease: "easeInOut" }
+                        }}
+                        transition={{ duration: 0.55, ease: "easeInOut" }}
                     >
                         {value}
                     </motion.div>
                 </AnimatePresence>
             </div>
+
             <div style={styles.label}>{label}</div>
         </div>
     );
@@ -58,35 +64,43 @@ function getTimeLeft(target: Date) {
 const styles: Record<string, React.CSSProperties> = {
     container: {
         display: "flex",
-        gap: "20px",
+        gap: "28px",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "flex-start",
     },
     unit: {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         fontFamily: "sans-serif",
+        perspective: "1000px",
     },
-    numberWrapper: {
-        width: "70px",
-        height: "70px",
-        perspective: "400px",
+    pageWrapper: {
+        width: "100px",
+        height: "120px",
+        background: "#fff",
+        borderRadius: "10px",
+        boxShadow: "0 8px 18px rgba(0,0,0,0.2)",
         overflow: "hidden",
-        borderRadius: "12px",
-        background: "#1a1a1a",
+        position: "relative",
+    },
+    page: {
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        fontSize: "52px",
+        fontWeight: 700,
+        color: "#222",
+        background: "#fff",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-    },
-    number: {
-        fontSize: "32px",
-        fontWeight: 600,
-        color: "white",
+        borderRadius: "10px",
+        transformOrigin: "top center",
     },
     label: {
-        marginTop: "8px",
-        fontSize: "14px",
+        marginTop: "10px",
+        fontSize: "15px",
         color: "#666",
     },
 };
