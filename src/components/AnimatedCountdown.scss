@@ -1,0 +1,92 @@
+.countdown {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: sans-serif;
+  perspective: 1000px;
+}
+
+.countdown-page-wrapper {
+  width: 100px;
+  height: 120px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: relative;
+}
+
+.countdown-page {
+  position: absolute;
+  inset: 0;
+  font-size: 42px;
+  font-weight: 700;
+  color: #213547;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transform-origin: top center;
+}
+
+.countdown-label {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #666;
+}
+
+/* ========================= */
+/* 📱 Mobile (<= 768px) */
+/* ========================= */
+
+@media (max-width: 768px) {
+  .countdown {
+    gap: 14px;
+  }
+
+  .countdown-page-wrapper {
+    width: 64px;
+    height: 76px;
+    border-radius: 8px;
+  }
+
+  .countdown-page {
+    font-size: 26px;
+  }
+
+  .countdown-label {
+    font-size: 12px;
+    margin-top: 6px;
+  }
+}
+
+/* ========================= */
+/* 📱 Small mobile (<= 480px) */
+/* ========================= */
+
+@media (max-width: 480px) {
+  .countdown {
+    gap: 10px;
+  }
+
+  .countdown-page-wrapper {
+    width: 56px;
+    height: 68px;
+  }
+
+  .countdown-page {
+    font-size: 22px;
+  }
+
+  .countdown-label {
+    font-size: 11px;
+  }
+}
