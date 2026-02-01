@@ -12,8 +12,8 @@ export default function Footer() {
     }, []);
 
     return (
-        year ? <div className="footer">
-            {'© '}{year}{' Анечка'}
-        </div> : null
+        <div className="footer">
+            {year ? `© ${year} Анечка` : ' '}
+        </div>
     );
 }
