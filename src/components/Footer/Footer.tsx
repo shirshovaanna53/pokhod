@@ -13,7 +13,7 @@ export default function Footer() {
 
     return (
         <div className="footer">
-            {'@'}{year}{' Анечка'}
+            {'© '}{year}{' Анечка'}
         </div>
     );
 }
